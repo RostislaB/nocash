@@ -2,8 +2,10 @@ import { Paper, Typography, Box } from "@mui/material";
 import PlayForWorkIcon from "@mui/icons-material/PlayForWork";
 import SearchIcon from "@mui/icons-material/Search";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
+import { useNavigate } from "react-router-dom";
 
 function BlockMenu() {
+  const navigate = useNavigate();
   return (
     <Box display="flex">
       <Box
@@ -63,6 +65,10 @@ function BlockMenu() {
         borderRadius={4}
         display="flex"
         flexDirection="column"
+        sx={{
+          cursor: "pointer",
+        }}
+        onClick={() => navigate("/qrcode")}
       >
         <Box display="flex" flex={1} justifyContent="center">
           <Box

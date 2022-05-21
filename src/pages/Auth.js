@@ -70,7 +70,7 @@ function Auth() {
       <Container>
         <Box>
           <Typography align="center" sx={{ my: 2 }}>
-            CODENAME BEACHPAY
+            Travel coast
           </Typography>
           <Typography align="center">
             Платёжная бонусная система для оплаты товаров и услуг на пляжах

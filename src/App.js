@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import Cookie from "js-cookie";
 import Layout from "./components/Layout";
 import Shops from "./pages/Shops";
+import Qrcode from "./pages/Qrcode";
+import ShopId from "./pages/ShopId";
 
 function App() {
   const { auth, authChecked } = useAuth();
@@ -37,6 +39,8 @@ function App() {
         >
           <Route index element={<Main />} />
           <Route path="shops" element={<Shops />} />
+          <Route path="qrcode" element={<Qrcode />} />
+          <Route path="shop/:id" element={<ShopId />} />
         </Route>
         <Route path="/auth" element={<Auth />} />
         <Route path="*" element={<NotFound />} />

@@ -29,22 +29,24 @@ function Shops() {
     };
     getShops();
   }, [auth.token, navigate, signOut]);
-  console.log("shops", shops);
+
   return (
     <Container>
       {shops.map(({ id, name, image }) => (
         <Box
           key={id}
           component={Paper}
-          p={1}
+          p={2}
           mb={2}
           sx={{
             cursor: "pointer",
+            borderRadius: 4,
           }}
+          onClick={() => navigate(`/shop/${id}`)}
         >
-          <Typography>{name}</Typography>
+          <Typography variant="h5">{name}</Typography>
           <Box display="flex" justifyContent="center">
-            <img src={image} alt={name} />
+            <img width="100%" src={image} alt={name} />
           </Box>
         </Box>
       ))}

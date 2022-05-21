@@ -5,3 +5,4 @@ export const authCheckCode = host + "/auth/checkCode";
 
 export const userGet = host + "/user/get";
 export const shopsGet = host + "/shops/get";
+export const shopGetId = (id) => host + "/shop/" + id;
