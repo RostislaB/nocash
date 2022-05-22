@@ -38,7 +38,7 @@ function BuyBalance(props) {
 
     getUser();
   }, [auth.token, navigate, signOut]);
-  console.log(user);
+
   return (
     <Box display="flex" {...props}>
       <Box flex={1} />
