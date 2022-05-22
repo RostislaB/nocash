@@ -6,7 +6,7 @@ import BlockProdavets from "../components/BlockProdavets";
 import BuyBalance from "../components/BuyBalance";
 import BuyCount from "../components/BuyCount";
 import { useAuth } from "../hook/useAuth";
-import { shopGetId } from "../utils/apiUrl";
+import { shopBuyItems, shopCheck, shopGetId } from "../utils/apiUrl";
 
 function ShopId() {
   const params = useParams();
@@ -18,6 +18,11 @@ function ShopId() {
       name: "",
       image: "",
       description: "",
+    },
+    user: {
+      balance: 0,
+      balance_bonus: 0,
+      phone_number: "",
     },
     items: [],
   });
@@ -84,16 +89,46 @@ function ShopId() {
       buyItems.forEach((item) => {
         preItog += item.price * item.buyCount;
       });
-      // setBuyItems(buyItems.filter((item) => item.buyCount !== 0));
       setItog(preItog);
     };
     summItog();
   }, [buyItems]);
 
+  const buyItemsShop = async () => {
+    const {
+      data: { result, error },
+    } = await axios.post(
+      shopBuyItems(params.id),
+      {
+        buyItems,
+      },
+      {
+        headers: {
+          Authorization: `bearer ${auth.token}`,
+        },
+      }
+    );
+
+    if (!result) {
+      if (error.Code === 15 || error.Code === 16 || error.Code === 17) {
+        signOut(() => navigate("/auth"));
+      }
+    }
+
+    if (result.status === "OK") {
+      navigate(shopCheck(params.id) + `/${result.hash_card}`);
+    }
+  };
+
   return (
     <>
       <Container maxWidth="sm" sx={{ mb: 8 }}>
-        <BuyBalance mb={2} />
+        <BuyBalance
+          mb={2}
+          balance={shop.user.balance}
+          balance_bonus={shop.user.balance_bonus}
+          phone_number={shop.user.phone_number}
+        />
 
         <BlockProdavets shop={shop.shop} />
         {!shop.items.length ? (
@@ -161,7 +196,8 @@ function ShopId() {
         <Button
           disabled={!itog ? true : false}
           variant="contained"
-          color="success"
+          color="primary"
+          onClick={buyItemsShop}
         >
           {itog.toFixed(2)}₽ Оплатить
         </Button>

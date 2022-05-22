@@ -11,6 +11,9 @@ import Layout from "./components/Layout";
 import Shops from "./pages/Shops";
 import Qrcode from "./pages/Qrcode";
 import ShopId from "./pages/ShopId";
+import AddBalance from "./pages/AddBalance";
+import ShopCheck from "./pages/ShopCheck";
+import UserCard from "./pages/UserCard";
 
 function App() {
   const { auth, authChecked } = useAuth();
@@ -40,9 +43,12 @@ function App() {
           }
         >
           <Route index element={<Main />} />
+          <Route path="/card" element={<UserCard />} />
           <Route path="shops" element={<Shops />} />
           <Route path="qrcode" element={<Qrcode />} />
           <Route path="shop/:id" element={<ShopId />} />
+          <Route path="/shop/:id/check/:hash_card" element={<ShopCheck />} />
+          <Route path="add-balance" element={<AddBalance />} />
         </Route>
         <Route path="/auth" element={<Auth />} />
         <Route path="*" element={<NotFound />} />

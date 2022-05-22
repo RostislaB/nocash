@@ -46,7 +46,7 @@ function Main() {
     <Container maxWidth="sm">
       <Box flexDirection="column" p={(0, 6)}>
         <Typography align="center">+{user.phone_number}</Typography>
-        <Typography align="center">Анапа, температура воды: 22c</Typography>
+        <Typography align="center">Анапа, температура воды: 15℃</Typography>
       </Box>
 
       <Info />

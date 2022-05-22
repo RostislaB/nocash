@@ -59,10 +59,10 @@ function Auth() {
     if (!e.target.value.length) {
       return;
     }
-    setPhone(e.target.value);
+    setPhone(e.target.value.replace(/[^0-9]/g, ""));
   };
   const handleInputCode = (e) => {
-    setCode(e.target.value);
+    setCode(e.target.value.replace(/[^0-9]/g, ""));
   };
 
   return (

@@ -5,7 +5,7 @@ function BrowserView() {
   return (
     <>
       <AppBar>
-        <Toolbar>sdf</Toolbar>
+        <Toolbar>Travel coast</Toolbar>
       </AppBar>
       <Box
         sx={{

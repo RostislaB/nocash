@@ -24,6 +24,9 @@ function MobileView() {
       ) {
         setValue(1);
       }
+      if (location.pathname.split("/")[1] === "card") {
+        setValue(2);
+      }
     };
     reloads();
   }, [location]);
@@ -57,7 +60,12 @@ function MobileView() {
             }}
             icon={<GridViewIcon />}
           />
-          <BottomNavigationAction icon={<ShoppingCartIcon />} />
+          <BottomNavigationAction
+            onClick={() => {
+              navigate("/card");
+            }}
+            icon={<ShoppingCartIcon />}
+          />
           <BottomNavigationAction icon={<SettingsIcon />} />
         </BottomNavigation>
       </Paper>

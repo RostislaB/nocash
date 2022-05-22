@@ -17,7 +17,13 @@ function BlockMenu() {
         component={Paper}
         borderRadius={4}
       >
-        <Box display="flex" flex={1} justifyContent="center">
+        <Box
+          display="flex"
+          flex={1}
+          justifyContent="center"
+          cursor="pointer"
+          onClick={() => navigate("add-balance")}
+        >
           <Box
             display="flex"
             alignItems="center"
