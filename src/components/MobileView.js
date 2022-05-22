@@ -4,16 +4,29 @@ import {
   Box,
   Paper,
 } from "@mui/material";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import GridViewIcon from "@mui/icons-material/GridView";
-import BarChartIcon from "@mui/icons-material/BarChart";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function MobileView() {
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const reloads = () => {
+      if (
+        location.pathname.split("/")[1] === "shops" ||
+        location.pathname.split("/")[1] === "shop"
+      ) {
+        setValue(1);
+      }
+    };
+    reloads();
+  }, [location]);
 
   return (
     <>
@@ -44,7 +57,7 @@ function MobileView() {
             }}
             icon={<GridViewIcon />}
           />
-          <BottomNavigationAction icon={<BarChartIcon />} />
+          <BottomNavigationAction icon={<ShoppingCartIcon />} />
           <BottomNavigationAction icon={<SettingsIcon />} />
         </BottomNavigation>
       </Paper>

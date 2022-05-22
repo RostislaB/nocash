@@ -1,14 +1,11 @@
-import { Box, Container, Typography } from "@mui/material";
-import Balance from "../components/Balance";
-import Info from "../components/Info";
-import BlockMenu from "../components/BlockMenu";
-import { useAuth } from "../hook/useAuth";
-import { useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
 import axios from "axios";
-import { userGet } from "../utils/apiUrl";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hook/useAuth";
+import { userGet } from "../utils/apiUrl";
 
-function Main() {
+function BuyBalance(props) {
   const { auth, signOut } = useAuth();
   const [user, setUser] = useState({
     balance: 0,
@@ -41,21 +38,22 @@ function Main() {
 
     getUser();
   }, [auth.token, navigate, signOut]);
-
+  console.log(user);
   return (
-    <Container maxWidth="sm">
-      <Box flexDirection="column" p={(0, 6)}>
-        <Typography align="center">+{user.phone_number}</Typography>
-        <Typography align="center">Анапа, температура воды: 22c</Typography>
+    <Box display="flex" {...props}>
+      <Box flex={1} />
+      <Box>
+        <Box>
+          <Typography variant="caption">+{user.phone_number}</Typography>
+        </Box>
+        <Box display="flex" justifyContent="right">
+          <Typography component="span" sx={{ fontWeight: 700 }}>
+            {user.balance + user.balance_bonus}₽
+          </Typography>
+        </Box>
       </Box>
-
-      <Info />
-
-      <Balance balance={user.balance} balance_bonus={user.balance_bonus} />
-
-      <BlockMenu />
-    </Container>
+    </Box>
   );
 }
 
-export default Main;
+export default BuyBalance;

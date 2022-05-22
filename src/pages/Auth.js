@@ -67,7 +67,7 @@ function Auth() {
 
   return (
     <>
-      <Container>
+      <Container maxWidth="sm">
         <Box>
           <Typography align="center" sx={{ my: 2 }}>
             Travel coast

@@ -14,11 +14,11 @@ export function AuthProvider({ children }) {
   const signOut = (cb = () => {}) => {
     setAuth(null);
     Cookie.remove("token");
-    cb();
   };
-  const authChecked = (token) => {
+  const authChecked = (token, cb) => {
     const auth = jwt_decode(token);
     setAuth({ ...auth, token });
+    cb();
   };
 
   const value = { auth, signIn, signOut, authChecked };

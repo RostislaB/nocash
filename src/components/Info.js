@@ -33,7 +33,7 @@ function Info() {
         >
           Штормовое предупреждение!
         </Typography>
-        <Typography>На пляжах Анапы ожидается шторм 22.05.2022</Typography>
+        <Typography>На пляжах Анапы ожидается шторм 23.05.2022</Typography>
       </Box>
     </Box>
   );

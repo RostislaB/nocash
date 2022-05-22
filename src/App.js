@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import RequireAuth from "./hoc/RequireAuth";
 import { useAuth } from "./hook/useAuth";
 import Auth from "./pages/Auth";
@@ -14,17 +14,19 @@ import ShopId from "./pages/ShopId";
 
 function App() {
   const { auth, authChecked } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkToken = () => {
       const token = Cookie.get("token");
 
       if (!auth && token) {
-        authChecked(token);
+        authChecked(token, () => navigate(location));
       }
     };
     checkToken();
-  }, [auth, authChecked]);
+  }, [auth, authChecked, navigate, location]);
 
   return (
     <Box display="flex" flexDirection="column" height="100vh">

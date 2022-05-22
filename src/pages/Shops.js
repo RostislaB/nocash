@@ -31,7 +31,7 @@ function Shops() {
   }, [auth.token, navigate, signOut]);
 
   return (
-    <Container>
+    <Container maxWidth="sm">
       {shops.map(({ id, name, image }) => (
         <Box
           key={id}
